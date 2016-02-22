@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
+import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +43,6 @@ public class MainActivity extends BaseActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +69,6 @@ public class MainActivity extends BaseActivity {
                         .setAction("Action", null).show();
             }
         });
-
     }
 
 
@@ -95,6 +94,14 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void openSearchFragment() {
+        BaseFragment tmp = mSectionsPagerAdapter.getFragment(0);
+        if (tmp != null) {
+            SearchFragment f = (SearchFragment)tmp;
+            f.openSearchResult();
+        }
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -102,6 +109,7 @@ public class MainActivity extends BaseActivity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         String[] sections;
         Context ctx;
+        SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
         private int[] imageResId = {
                 R.drawable.ic_tab_search,
@@ -116,15 +124,25 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
+            Fragment f = null;
             switch (position) {
-                case 0: return BaseFragment.newInstance(SearchFragment.class);
-                case 1: return BaseFragment.newInstance(ExploreFragment.class);
-                case 2: return BaseFragment.newInstance(UserJobsFragment.class);
+                case 0:
+                    f = BaseFragment.newInstance(SearchFragment.class);
+                    break;
+                case 1:
+                    f = BaseFragment.newInstance(ExploreFragment.class);
+                    break;
+                case 2:
+                    f = BaseFragment.newInstance(UserJobsFragment.class);
+                    break;
+                case 3:
+                    f = BaseFragment.newInstance(SearchFragment.class);
+                    break;
                 default:
-                    return null;
+                    break;
             }
+            registeredFragments.append(position, f);
+            return f;
         }
 
         @Override
@@ -134,8 +152,6 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-//            return sections[position];
-
             Drawable image = ContextCompat.getDrawable(ctx, imageResId[position]);
             image.setBounds(0, 0, image.getIntrinsicWidth()*3/4, image.getIntrinsicHeight()*3/4);
             // Replace blank spaces with image icon
@@ -143,6 +159,10 @@ public class MainActivity extends BaseActivity {
             ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BASELINE);
             sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             return sb;
+        }
+
+        public BaseFragment getFragment(int position) {
+            return (BaseFragment)registeredFragments.get(position);
         }
     }
 }
