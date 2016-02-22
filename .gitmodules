@@ -1,0 +1,12 @@
+[submodule "android/vietnamworks-job-app/volley"]
+	path = android/vietnamworks-job-app/volley
+	url = https://android.googlesource.com/platform/frameworks/volley
+[submodule "android/vietnamworks-job-app/android-helper"]
+	path = android/vietnamworks-job-app/android-helper
+	url = https://github.com/rickyngk/android-helper.git
+[submodule "android/vietnamworks-job-app/volley-helper"]
+	path = android/vietnamworks-job-app/volley-helper
+	url = https://github.com/rickyngk/volley-helper.git
+[submodule "android/vietnamworks-job-app/vnw-core"]
+	path = android/vietnamworks-job-app/vnw-core
+	url = https://github.com/rickyngk/vnw-core

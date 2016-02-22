@@ -3,11 +3,13 @@
         <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
         <item name="android:background">#ffffff</item>
         <item name="tabSelectedTextColor">@color/textColorDark</item>
+        <item name="android:theme">@style/Text</item>
     </style>
 
     <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/textColorDark</item>
+
     </style>
 
 </resources>
