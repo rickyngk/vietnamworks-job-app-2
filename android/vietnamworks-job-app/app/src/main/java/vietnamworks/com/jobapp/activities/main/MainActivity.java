@@ -1,4 +1,4 @@
-package vietnamworks.com.jobapp;
+package vietnamworks.com.jobapp.activities.main;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -15,15 +15,16 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import R.helper.BaseActivity;
 import R.helper.BaseFragment;
+import vietnamworks.com.jobapp.R;
+import vietnamworks.com.jobapp.activities.main.fragments.ExploreFragment;
+import vietnamworks.com.jobapp.activities.main.fragments.SearchFragment;
+import vietnamworks.com.jobapp.activities.main.fragments.UserJobsFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -95,41 +96,6 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends BaseFragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
-
-    /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
@@ -152,7 +118,13 @@ public class MainActivity extends BaseActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0: return BaseFragment.newInstance(SearchFragment.class);
+                case 1: return BaseFragment.newInstance(ExploreFragment.class);
+                case 2: return BaseFragment.newInstance(UserJobsFragment.class);
+                default:
+                    return null;
+            }
         }
 
         @Override
