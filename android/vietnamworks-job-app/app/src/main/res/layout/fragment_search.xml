@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.main.MainActivity$PlaceholderFragment">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        android:layout_marginLeft="@dimen/base_padding_2x"
+        android:layout_marginTop="@dimen/base_padding_4x"
+        android:layout_marginRight="@dimen/base_padding_2x"
+        android:layout_marginBottom="@dimen/base_padding_2x">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/base_padding_2x"
+            android:paddingTop="@dimen/base_padding_2x"
+            android:paddingBottom="@dimen/base_padding_2x"
+            android:paddingRight="@dimen/base_padding_2x">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/editText"
+                    android:inputType="text"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton"
+                    android:src="@drawable/ic_tab_search"
+                    android:contentDescription="@null"
+                    android:background="?android:attr/selectableItemBackground"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
