@@ -30,19 +30,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <EditText
+                <AutoCompleteTextView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/editText"
-                    android:inputType="text"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/input_job_title"
+                    style="@style/Text.Medium.Muted"
+                    android:inputType="textNoSuggestions|text"
+                    android:completionThreshold="1"
+                    android:imeActionLabel="@string/search"
+                    android:imeActionId="@integer/ime_job_title"
+                    android:hint="@string/input_job_title_hint"
+                    android:padding="@dimen/base_padding"
                     android:background="@android:color/transparent"
                     android:layout_weight="1" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_search"
+                    android:src="@drawable/ic_tab_search"
+                    android:contentDescription="@null"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_marginRight="@dimen/base_padding_2x" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton"
-                    android:src="@drawable/ic_tab_search"
+                    android:id="@+id/btn_advance_search"
+                    android:src="@drawable/ic_action_more_details_button"
                     android:contentDescription="@null"
                     android:background="?android:attr/selectableItemBackground"/>
             </LinearLayout>
