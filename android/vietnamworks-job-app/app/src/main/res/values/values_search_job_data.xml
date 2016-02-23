@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- locations -->
+    <string name="location_hcm">Ho Chi Minh</string>
+    <string name="location_hn">Ha Noi</string>
+    <string name="location_danang">Da Nang</string>
+
+    <string-array name="array_locations">
+        <item>Select your location</item>
+        <item>@string/location_hcm</item>
+        <item>@string/location_hn</item>
+        <item>@string/location_danang</item>
+    </string-array>
+
+    <string-array name="location_code">
+        <item>-1</item>
+        <item>29</item>
+        <item>24</item>
+        <item>17</item>
+    </string-array>
+
+    <!-- min salary -->
+    <string-array name="array_min_salary">
+        <item>Minimum salary (USD)</item>
+        <item>$100</item>
+        <item>$250</item>
+        <item>$500</item>
+        <item>$750</item>
+        <item>$1000</item>
+        <item>$1500</item>
+        <item>$2000</item>
+        <item>$2500</item>
+        <item>$5000</item>
+    </string-array>
+
+    <integer-array name="array_min_salary_value">
+        <item>999999999</item>
+        <item>100</item>
+        <item>250</item>
+        <item>500</item>
+        <item>750</item>
+        <item>1000</item>
+        <item>1500</item>
+        <item>2000</item>
+        <item>2500</item>
+        <item>5000</item>
+    </integer-array>
+
+
+    <!-- job level -->
+    <string name="job_level_new_grad">New Grad/Entry Level/Internship</string>
+    <string name="job_level_experienced">Experienced (Non-Manager)</string>
+    <string name="job_level_team_lead">Team Leader/Supervisor</string>
+    <string name="job_level_manager">Manager</string>
+    <string name="job_level_vice_director">Vice Director</string>
+    <string name="job_level_director">Director</string>
+    <string name="job_level_ceo">CEO</string>
+    <string name="job_level_vice_president">Vice President</string>
+    <string name="job_level_president">President</string>
+
+    <string-array name="array_job_level">
+        <item>Select job level</item>
+        <item>@string/job_level_new_grad</item>
+        <item>@string/job_level_experienced</item>
+        <item>@string/job_level_team_lead</item>
+        <item>@string/job_level_manager</item>
+        <item>@string/job_level_vice_director</item>
+        <item>@string/job_level_director</item>
+        <item>@string/job_level_ceo</item>
+        <item>@string/job_level_vice_president</item>
+        <item>@string/job_level_president</item>
+    </string-array>
+
+
+    <integer-array name="array_job_level_value">
+        <item>-1</item>
+        <item>1</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>10</item>
+        <item>3</item>
+        <item>4</item>
+        <item>8</item>
+        <item>9</item>
+    </integer-array>
+
+
+    <!-- industry -->
+    <string name="industry_sale">Sales</string>
+    <string name="industry_marketing">Marketing</string>
+    <string name="industry_it">IT</string>
+    <string name="industry_finance">Finance</string>
+
+    <string-array name="array_industry">
+        <item>Select your industry</item>
+        <item>@string/industry_sale</item>
+        <item>@string/industry_marketing</item>
+        <item>@string/industry_it</item>
+        <item>@string/industry_finance</item>
+    </string-array>
+
+    <string-array name="array_industry_code">
+        <item> </item>
+        <item>33,34</item>
+        <item>27,57,3</item>
+        <item>55,35,66</item>
+        <item>59,42,58</item>
+    </string-array>
+
+</resources>

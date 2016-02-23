@@ -1,10 +1,9 @@
 package vietnamworks.com.jobapp.activities.main;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -47,15 +46,6 @@ public class MainActivity extends BaseActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     public void hideTabs() {
@@ -157,6 +147,18 @@ public class MainActivity extends BaseActivity {
 
         public BaseFragment getFragment(int position) {
             return (BaseFragment)registeredFragments.get(position);
+        }
+    }
+
+    public void onLayoutChanged(Rect r, boolean isSoftKeyShown, boolean lastState) {
+        if (isSoftKeyShown != lastState) {
+            BaseFragment tmp = mSectionsPagerAdapter.getFragment(mViewPager.getCurrentItem());
+            if (tmp != null) {
+                if (tmp instanceof SearchFragment) {
+                    SearchFragment f = (SearchFragment) tmp;
+                    f.onLayoutChanged(isSoftKeyShown);
+                }
+            }
         }
     }
 }

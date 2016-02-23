@@ -2,13 +2,16 @@
     <string name="app_name">JobApp</string>
     <string name="action_settings">Settings</string>
     <string name="action_notifications">Notification</string>
-
-    <string name="search">Search</string>
-    <string name="input_job_title_hint">Search job title, position, skill&#8203;&#8203;&#8203;</string>
-
     <string-array name="sections">
         <item>Search</item>
         <item>Explore</item>
         <item>Your jobs</item>
     </string-array>
+
+
+    <string name="search">Search</string>
+    <string name="input_job_title_hint">Search job title</string>
+    <string name="validate_job_title_is_require">Job title is required</string>
+    <string name="recent_search">Recent searches</string>
+
 </resources>
