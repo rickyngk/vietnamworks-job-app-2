@@ -49,14 +49,18 @@
                     android:id="@+id/btn_search"
                     android:src="@drawable/ic_tab_search"
                     android:contentDescription="@null"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="?android:attr/selectableItemBackground" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorDivider"
+                    android:layout_marginLeft="@dimen/base_padding_2x"
                     android:layout_marginRight="@dimen/base_padding_2x" />
-
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_advance_search"
-                    android:src="@drawable/ic_action_more_details_button"
+                    android:src="@drawable/ic_action_more_arrow_circular_symbol"
                     android:contentDescription="@null"
                     android:background="?android:attr/selectableItemBackground"/>
             </LinearLayout>
@@ -92,6 +96,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/select_min_salary"
+                    android:paddingTop="@dimen/base_padding_2x"
+                    android:paddingBottom="@dimen/base_padding_2x"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/select_position"
                     android:paddingTop="@dimen/base_padding_2x"
                     android:paddingBottom="@dimen/base_padding_2x"/>
             </LinearLayout>

@@ -4,7 +4,7 @@
     <string name="action_notifications">Notification</string>
 
     <string name="search">Search</string>
-    <string name="input_job_title_hint">Enter job title</string>
+    <string name="input_job_title_hint">Search job title, position, skill&#8203;&#8203;&#8203;</string>
 
     <string-array name="sections">
         <item>Search</item>

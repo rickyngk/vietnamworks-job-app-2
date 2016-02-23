@@ -33,6 +33,9 @@ public class SearchFragment extends BaseFragment {
     @Bind(R.id.select_min_salary)
     Spinner selectMinSalary;
 
+    @Bind(R.id.select_position)
+    Spinner selectPosition;
+
     @Bind(R.id.view_search_extra)
     View searchExtraView;
 
@@ -45,6 +48,7 @@ public class SearchFragment extends BaseFragment {
         importSelect(selectIndustry, R.array.array_industry);
         importSelect(selectWorkingPlace, R.array.array_locations);
         importSelect(selectMinSalary, R.array.array_min_salary);
+        importSelect(selectPosition, R.array.array_job_level);
 
         searchExtraView.setVisibility(View.GONE);
 
@@ -52,8 +56,12 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (searchExtraView.getVisibility() == View.GONE) {
+                    btnAdvanceSearch.setImageDrawable(getDrawableResource(R.drawable.ic_action_less_arrow_circular_symbol));
                     searchExtraView.setVisibility(View.VISIBLE);
-
+                } else {
+                    btnAdvanceSearch.setImageDrawable(getDrawableResource(R.drawable.ic_action_more_arrow_circular_symbol));
+                    searchExtraView.setVisibility(View.GONE);
+                    resetExtraForm();
                 }
             }
         });
@@ -62,7 +70,10 @@ public class SearchFragment extends BaseFragment {
     }
 
     private void resetExtraForm() {
-        //selectWorkingPlace.select
+        selectIndustry.setSelection(0);
+        selectWorkingPlace.setSelection(0);
+        selectMinSalary.setSelection(0);
+        selectPosition.setSelection(0);
     }
 
     private void importSelect(Spinner target, int resId) {
