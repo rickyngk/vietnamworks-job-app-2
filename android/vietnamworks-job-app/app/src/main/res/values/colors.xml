@@ -6,4 +6,6 @@
 
     <color name="colorDanger">#FF4081</color>
     <color name="colorWarning">#f57700</color>
+    <color name="colorDivider">#cccccccc</color>
+    <color name="colorDividerDark">#cc000000</color>
 </resources>
