@@ -2,9 +2,9 @@
     <string name="app_name">JobApp</string>
     <string name="action_settings">Settings</string>
     <string name="action_notifications">Notification</string>
-    <string-array name="sections">
-        <item>Search</item>
-        <item>Explore</item>
+    <string-array name="array_section_title">
+        <item>Search jobs</item>
+        <item>Explore jobs</item>
         <item>Your jobs</item>
     </string-array>
 

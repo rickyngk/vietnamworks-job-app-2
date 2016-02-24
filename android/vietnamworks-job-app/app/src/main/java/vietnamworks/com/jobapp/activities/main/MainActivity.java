@@ -61,6 +61,7 @@ public class MainActivity extends BaseActivity {
                     showTabs();
                     showActionBar();
                 }
+                setTitle(getResources().getStringArray(R.array.array_section_title)[position]);
             }
 
             @Override
@@ -68,6 +69,8 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+        setTitle(getResources().getStringArray(R.array.array_section_title)[0]);
     }
 
     public void hideTabs() {
@@ -120,12 +123,12 @@ public class MainActivity extends BaseActivity {
         private int[] imageResId = {
                 R.drawable.ic_tab_search,
                 R.drawable.ic_tab_explore,
-                R.drawable.ic_tab_my_job
+                R.drawable.ic_action_working_briefcase
         };
         public SectionsPagerAdapter(Context ctx, FragmentManager fm) {
             super(fm);
             this.ctx = ctx;
-            sections = getResources().getStringArray(R.array.sections);
+            sections = getResources().getStringArray(R.array.array_section_title);
         }
 
         @Override
@@ -158,10 +161,16 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
+            /*
             Drawable image = ContextCompat.getDrawable(ctx, imageResId[position]);
             image.setBounds(0, 0, image.getIntrinsicWidth()*3/4, image.getIntrinsicHeight()*3/4);
-            // Replace blank spaces with image icon
             SpannableString sb = new SpannableString(" \n" + sections[position]);
+            ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BASELINE);
+            sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            return sb;*/
+            Drawable image = ContextCompat.getDrawable(ctx, imageResId[position]);
+            image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
+            SpannableString sb = new SpannableString(" ");
             ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BASELINE);
             sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             return sb;
