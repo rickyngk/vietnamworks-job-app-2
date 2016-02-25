@@ -2,6 +2,7 @@ package vietnamworks.com.jobapp.activities.main.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,9 @@ public class ExploreFragment extends BaseFragment {
     @Bind(R.id.loading_view)
     View loadingView;
 
+    @Bind(R.id.swipe_container)
+    SwipeRefreshLayout swipeLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,6 +46,18 @@ public class ExploreFragment extends BaseFragment {
         ButterKnife.bind(this, rootView);
 
         loadingView.setVisibility(View.VISIBLE);
+        loadData();
+
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+            }
+        });
+        return rootView;
+    }
+
+    private void loadData() {
         ExploredJobModel.load(getContext(), new Callback() {
             @Override
             public void onCompleted(Context context, CallbackResult result) {
@@ -49,12 +65,12 @@ public class ExploreFragment extends BaseFragment {
                     MainActivity act = (MainActivity)context;
                     if (!act.isFinishing()) {
                         loadingView.setVisibility(View.GONE);
+                        swipeLayout.setRefreshing(false);
                         listviewExploredJobs.setAdapter(new ExploredJobsAdapter(context));
                     }
                 }
             }
         });
-        return rootView;
     }
 
     public static class ExploredJobsAdapter extends BaseAdapter {
