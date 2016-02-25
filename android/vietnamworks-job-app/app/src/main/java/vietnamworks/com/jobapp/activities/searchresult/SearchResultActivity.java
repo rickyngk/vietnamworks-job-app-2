@@ -101,7 +101,9 @@ public class SearchResultActivity extends BaseActivity {
                 });
                 return new ViewHolder(v);
             } else {
-                return new ViewHolder(new JobSearchBox(context));
+                JobSearchBox b = new JobSearchBox(context);
+                b.importData(((SearchResultActivity)context).searchEntity);
+                return new ViewHolder(b);
             }
         }
 
@@ -140,8 +142,7 @@ public class SearchResultActivity extends BaseActivity {
                     ((TextView) view.findViewById(R.id.txt_location)).setText(locationDetail.toString());
                 }
             } else {
-                JobSearchBox b = (JobSearchBox)view;
-                b.importData(((SearchResultActivity)context).searchEntity);
+
             }
         }
 
