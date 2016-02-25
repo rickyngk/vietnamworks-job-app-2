@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import R.helper.BaseFragment;
 import R.helper.Callback;
@@ -17,6 +20,9 @@ import butterknife.ButterKnife;
 import vietnamworks.com.jobapp.R;
 import vietnamworks.com.jobapp.activities.main.MainActivity;
 import vietnamworks.com.jobapp.models.ExploredJobModel;
+import vietnamworks.com.vnwcore.entities.Configuration;
+import vietnamworks.com.vnwcore.entities.JobSearchResult;
+import vietnamworks.com.vnwcore.entities.Location;
 
 /**
  * Created by duynk on 2/22/16.
@@ -72,14 +78,38 @@ public class ExploreFragment extends BaseFragment {
             return position;
         }
 
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View view, ViewGroup parent) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.cv_search_history_item_list, parent, false);
-                TextView tv = (TextView)convertView.findViewById(R.id.textView1);
-                tv.setText(ExploredJobModel.get(position).getCompany());
+            if (view == null) {
+                view = layoutInflater.inflate(R.layout.cv_explored_item_view, parent, false);
+                JobSearchResult r = ExploredJobModel.get(position);
+                if (r != null) {
+                    ((TextView)view.findViewById(R.id.txt_job_title)).setText(r.getTitle());
+                    ((TextView)view.findViewById(R.id.txt_company)).setText(r.getCompany());
+
+                    String logo = r.getLogoURL();
+                    if (logo != null && !logo.isEmpty()) {
+                        Picasso.with(context).load(logo).into(((ImageView) view.findViewById(R.id.img_company)));
+                    }
+                    String locations = r.getLocations();
+                    StringBuilder locationDetail = new StringBuilder();
+                    String delim = "";
+                    if (locations != null && !locations.isEmpty()) {
+                        String[] locations_array = locations.split(",");
+                        for (int i = 0; i < locations_array.length; i++) {
+                            String l = locations_array[i].trim();
+                            Location loc = Configuration.findLocation(l);
+                            if (loc != null) {
+                                locationDetail.append(delim);
+                                locationDetail.append(loc.getEn());
+                                delim = ", ";
+                            }
+                        }
+                    }
+                    ((TextView)view.findViewById(R.id.txt_location)).setText(locationDetail.toString());
+                }
             }
-            return convertView;
+            return view;
         }
     }
 }

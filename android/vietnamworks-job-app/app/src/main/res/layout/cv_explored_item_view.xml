@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/base_padding_4x">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_company"
+            android:contentDescription="@null"
+            android:layout_marginRight="@dimen/base_padding_2x"
+            android:layout_marginLeft="@dimen/base_padding_2x" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/base_padding_2x">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/Text.Medium"
+                android:id="@+id/txt_job_title"
+                android:paddingTop="@dimen/base_padding_2x" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/Text.Small.Muted"
+                android:id="@+id/txt_company"
+                android:paddingTop="@dimen/base_padding_2x" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/Text.Small.Muted"
+                android:id="@+id/txt_location"
+                android:paddingTop="@dimen/base_padding_2x" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDivider"
+                android:layout_marginTop="@dimen/base_padding_4x"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
