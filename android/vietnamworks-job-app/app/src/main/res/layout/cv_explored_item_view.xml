@@ -6,7 +6,9 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal" android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/base_padding_4x">
+        android:paddingTop="@dimen/base_padding_4x"
+        android:id="@+id/view_item_holder"
+        android:background="?android:attr/selectableItemBackground">
 
         <ImageView
             android:layout_width="80dp"

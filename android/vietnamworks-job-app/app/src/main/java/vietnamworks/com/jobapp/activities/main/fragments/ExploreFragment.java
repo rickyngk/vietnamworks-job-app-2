@@ -3,12 +3,12 @@ package vietnamworks.com.jobapp.activities.main.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -30,11 +30,8 @@ import vietnamworks.com.vnwcore.entities.Location;
  */
 public class ExploreFragment extends BaseFragment {
 
-    @Bind(R.id.listview_explore)
-    ListView listviewExploredJobs;
-
-    @Bind(R.id.loading_view)
-    View loadingView;
+    @Bind(R.id.recycler_explore)
+    RecyclerView recyclerExploredJobs;
 
     @Bind(R.id.swipe_container)
     SwipeRefreshLayout swipeLayout;
@@ -45,15 +42,16 @@ public class ExploreFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_explore, container, false);
         ButterKnife.bind(this, rootView);
 
-        loadingView.setVisibility(View.VISIBLE);
         loadData();
 
+        swipeLayout.setRefreshing(true);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadData();
             }
         });
+        recyclerExploredJobs.setLayoutManager(new LinearLayoutManager(getContext()));
         return rootView;
     }
 
@@ -64,68 +62,78 @@ public class ExploreFragment extends BaseFragment {
                 if (context instanceof MainActivity) {
                     MainActivity act = (MainActivity)context;
                     if (!act.isFinishing()) {
-                        loadingView.setVisibility(View.GONE);
                         swipeLayout.setRefreshing(false);
-                        listviewExploredJobs.setAdapter(new ExploredJobsAdapter(context));
+                        recyclerExploredJobs.setAdapter(new ExploredJobsAdapter(context));
                     }
                 }
             }
         });
     }
 
-    public static class ExploredJobsAdapter extends BaseAdapter {
+    public static class ExploredJobsAdapter extends RecyclerView.Adapter<ExploredJobsAdapter.ViewHolder> {
         Context context;
         public ExploredJobsAdapter(Context context) {
             this.context = context;
         }
 
-        @Override
-        public int getCount() {
-            return ExploredJobModel.size();
+        public static class ViewHolder extends RecyclerView.ViewHolder {
+            // each data item is just a string in this case
+            public View view;
+            public ViewHolder(View v) {
+                super(v);
+                view = v;
+            }
         }
 
         @Override
-        public Object getItem(int position) {
-            return ExploredJobModel.get(position);
+        public ExploredJobsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            // create a new view
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cv_explored_item_view, parent, false);
+            v.findViewById(R.id.view_item_holder).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            return new ViewHolder(v);
         }
 
         @Override
-        public long getItemId(int position) {
-            return position;
-        }
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            View view = holder.view;
+            JobSearchResult r = ExploredJobModel.get(position);
+            if (r != null) {
+                ((TextView)view.findViewById(R.id.txt_job_title)).setText(r.getTitle());
+                ((TextView)view.findViewById(R.id.txt_company)).setText(r.getCompany());
 
-        public View getView(int position, View view, ViewGroup parent) {
-            LayoutInflater layoutInflater = LayoutInflater.from(context);
-            if (view == null) {
-                view = layoutInflater.inflate(R.layout.cv_explored_item_view, parent, false);
-                JobSearchResult r = ExploredJobModel.get(position);
-                if (r != null) {
-                    ((TextView)view.findViewById(R.id.txt_job_title)).setText(r.getTitle());
-                    ((TextView)view.findViewById(R.id.txt_company)).setText(r.getCompany());
-
-                    String logo = r.getLogoURL();
-                    if (logo != null && !logo.isEmpty()) {
-                        Picasso.with(context).load(logo).into(((ImageView) view.findViewById(R.id.img_company)));
-                    }
-                    String locations = r.getLocations();
-                    StringBuilder locationDetail = new StringBuilder();
-                    String delim = "";
-                    if (locations != null && !locations.isEmpty()) {
-                        String[] locations_array = locations.split(",");
-                        for (int i = 0; i < locations_array.length; i++) {
-                            String l = locations_array[i].trim();
-                            Location loc = Configuration.findLocation(l);
-                            if (loc != null) {
-                                locationDetail.append(delim);
-                                locationDetail.append(loc.getEn());
-                                delim = ", ";
-                            }
+                String logo = r.getLogoURL();
+                if (logo != null && !logo.isEmpty()) {
+                    Picasso.with(context).load(logo).into(((ImageView) view.findViewById(R.id.img_company)));
+                }
+                String locations = r.getLocations();
+                StringBuilder locationDetail = new StringBuilder();
+                String delim = "";
+                if (locations != null && !locations.isEmpty()) {
+                    String[] locations_array = locations.split(",");
+                    for (String l:locations_array) {
+                        l = l.trim();
+                        Location loc = Configuration.findLocation(l);
+                        if (loc != null) {
+                            locationDetail.append(delim);
+                            locationDetail.append(loc.getEn());
+                            delim = ", ";
                         }
                     }
-                    ((TextView)view.findViewById(R.id.txt_location)).setText(locationDetail.toString());
                 }
+                ((TextView)view.findViewById(R.id.txt_location)).setText(locationDetail.toString());
             }
-            return view;
+
+        }
+
+
+        @Override
+        public int getItemCount() {
+            return ExploredJobModel.size();
         }
     }
 }

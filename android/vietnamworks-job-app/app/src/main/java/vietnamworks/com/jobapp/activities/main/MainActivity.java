@@ -71,6 +71,7 @@ public class MainActivity extends BaseActivity {
         });
 
         setTitle(getResources().getStringArray(R.array.array_section_title)[0]);
+        setTitleBarColor(R.color.colorPrimaryDark);
     }
 
     public void hideTabs() {
