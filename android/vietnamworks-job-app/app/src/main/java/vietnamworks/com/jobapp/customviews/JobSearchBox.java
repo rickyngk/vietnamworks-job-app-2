@@ -1,4 +1,4 @@
-package vietnamworks.com.jobapp.activities;
+package vietnamworks.com.jobapp.customviews;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -9,11 +9,13 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -82,7 +84,7 @@ public class JobSearchBox extends FrameLayout {
 
         searchExtraView.setVisibility(View.GONE);
 
-        btnClearSearch.setVisibility(inputJobTitle.getText().length() > 0?View.VISIBLE:View.GONE);
+        btnClearSearch.setVisibility(inputJobTitle.getText().length() > 0 ? View.VISIBLE : View.GONE);
         btnClearSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +154,13 @@ public class JobSearchBox extends FrameLayout {
 
         UNLIMITED_SALARY = getResources().getInteger(R.integer.unlimited_salary);
         setupJobTitleSearchBox();
+
+        if (data != null) {
+            importData(data);
+            data = null;
+        }
+
+        this.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
 
@@ -258,6 +267,11 @@ public class JobSearchBox extends FrameLayout {
 
     private boolean isEmpty(Integer s) {
         return s == null || s == UNLIMITED_SALARY;
+    }
+
+    private SearchHistoryEntity data;
+    public void setData(SearchHistoryEntity entity) {
+        data = entity;
     }
 
     public void importData(SearchHistoryEntity entity) {

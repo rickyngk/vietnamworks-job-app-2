@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.main.MainActivity$PlaceholderFragment">
 
-    <vietnamworks.com.jobapp.activities.JobSearchBox
+    <vietnamworks.com.jobapp.customviews.JobSearchBox
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/job_search_box"/>

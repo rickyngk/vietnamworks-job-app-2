@@ -14,7 +14,7 @@ import R.helper.BaseFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.jobapp.R;
-import vietnamworks.com.jobapp.activities.JobSearchBox;
+import vietnamworks.com.jobapp.customviews.JobSearchBox;
 import vietnamworks.com.jobapp.activities.main.MainActivity;
 import vietnamworks.com.jobapp.activities.searchresult.SearchResultActivity;
 import vietnamworks.com.jobapp.entities.SearchHistoryEntity;
