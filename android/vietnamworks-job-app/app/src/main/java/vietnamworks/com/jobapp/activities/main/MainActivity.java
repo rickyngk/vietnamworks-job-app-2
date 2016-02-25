@@ -145,9 +145,6 @@ public class MainActivity extends BaseActivity {
                 case 2:
                     f = BaseFragment.newInstance(UserJobsFragment.class);
                     break;
-                case 3:
-                    f = BaseFragment.newInstance(SearchFragment.class);
-                    break;
                 default:
                     break;
             }

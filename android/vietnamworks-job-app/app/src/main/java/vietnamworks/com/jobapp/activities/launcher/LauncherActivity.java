@@ -7,6 +7,7 @@ import R.helper.Callback;
 import R.helper.CallbackResult;
 import R.helper.Common;
 import vietnamworks.com.jobapp.activities.main.MainActivity;
+import vietnamworks.com.vnwcore.Auth;
 import vietnamworks.com.vnwcore.entities.Configuration;
 
 /**
@@ -16,6 +17,13 @@ public class LauncherActivity extends vietnamworks.com.vnwcore.LauncherActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Auth.login(this, "rickylol@yopmail.com", "1234", new Callback<Object>() {
+            @Override
+            public void onCompleted(Context context, CallbackResult<Object> result) {
+
+            }
+        });
 
         Configuration.load(LauncherActivity.this, new Callback<Configuration>() {
             @Override

@@ -30,8 +30,8 @@ import vietnamworks.com.vnwcore.entities.Location;
  */
 public class ExploreFragment extends BaseFragment {
 
-    @Bind(R.id.recycler_explore)
-    RecyclerView recyclerExploredJobs;
+    @Bind(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     @Bind(R.id.swipe_container)
     SwipeRefreshLayout swipeLayout;
@@ -39,7 +39,7 @@ public class ExploreFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_explore, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
         ButterKnife.bind(this, rootView);
 
         loadData();
@@ -51,7 +51,7 @@ public class ExploreFragment extends BaseFragment {
                 loadData();
             }
         });
-        recyclerExploredJobs.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return rootView;
     }
 
@@ -63,21 +63,20 @@ public class ExploreFragment extends BaseFragment {
                     MainActivity act = (MainActivity)context;
                     if (!act.isFinishing()) {
                         swipeLayout.setRefreshing(false);
-                        recyclerExploredJobs.setAdapter(new ExploredJobsAdapter(context));
+                        recyclerView.setAdapter(new CustomRecyclerViewAdapter(context));
                     }
                 }
             }
         });
     }
 
-    public static class ExploredJobsAdapter extends RecyclerView.Adapter<ExploredJobsAdapter.ViewHolder> {
+    public static class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecyclerViewAdapter.ViewHolder> {
         Context context;
-        public ExploredJobsAdapter(Context context) {
+        public CustomRecyclerViewAdapter(Context context) {
             this.context = context;
         }
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
-            // each data item is just a string in this case
             public View view;
             public ViewHolder(View v) {
                 super(v);
@@ -86,8 +85,7 @@ public class ExploreFragment extends BaseFragment {
         }
 
         @Override
-        public ExploredJobsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            // create a new view
+        public CustomRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cv_explored_item_view, parent, false);
             v.findViewById(R.id.view_item_holder).setOnClickListener(new View.OnClickListener() {
                 @Override
