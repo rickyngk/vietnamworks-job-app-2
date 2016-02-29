@@ -1,16 +1,27 @@
 <resources>
-    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
+    <style name="MainTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MainTabLayoutTextAppearance</item>
         <item name="android:background">#ffffff</item>
         <item name="tabSelectedTextColor">@color/textColorDark</item>
         <item name="android:theme">@style/Text</item>
     </style>
 
-    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+    <style name="MainTabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/textColorDark</item>
         <item name="android:textSize">@dimen/font_xxs</item>
+    </style>
 
+
+    <style name="JobsTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/JobsTabLayoutTextAppearance</item>
+        <item name="android:background">#ffffff</item>
+        <item name="tabSelectedTextColor">@color/textColorDark</item>
+        <item name="android:theme">@style/Text</item>
+    </style>
+
+    <style name="JobsTabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/textColorDark</item>
     </style>
 
 </resources>

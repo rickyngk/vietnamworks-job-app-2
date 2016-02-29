@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">JobApp</string>
     <string name="action_settings">Settings</string>
+    <string name="action_user_jobs">Your jobs</string>
     <string name="action_notifications">Notification</string>
     <string-array name="array_section_title">
         <item>Search jobs</item>
@@ -8,10 +9,18 @@
         <item>Your jobs</item>
     </string-array>
 
+    <string-array name="array_job_section_title">
+        <item>Saved jobs</item>
+        <item>Last view</item>
+        <item>Applied jobs</item>
+    </string-array>
+
 
     <string name="search">Search</string>
     <string name="input_job_title_hint">Search job title</string>
     <string name="validate_job_title_is_require">Job title is required</string>
     <string name="recent_search">Recent searches</string>
+    <string name="title_activity_jobs">JobsActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

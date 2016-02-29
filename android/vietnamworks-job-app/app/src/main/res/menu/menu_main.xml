@@ -9,6 +9,12 @@
         android:title="@string/action_notifications"
         app:showAsAction="always" />
     <item
+        android:id="@+id/action_user_jobs"
+        android:orderInCategory="100"
+        android:title="@string/action_user_jobs"
+        android:icon="@drawable/ic_action_working_briefcase_light"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"

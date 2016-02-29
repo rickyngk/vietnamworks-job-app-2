@@ -27,6 +27,7 @@ import vietnamworks.com.jobapp.R;
 import vietnamworks.com.jobapp.activities.main.fragments.ExploreFragment;
 import vietnamworks.com.jobapp.activities.main.fragments.SearchFragment;
 import vietnamworks.com.jobapp.activities.main.fragments.UserJobsFragment;
+import vietnamworks.com.jobapp.activities.userjobs.JobsActivity;
 
 public class MainActivity extends BaseActivity {
     public enum SECTIONS {
@@ -103,16 +104,15 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_user_jobs:
+                pushActivity(JobsActivity.class);
+                return true;
+            case R.id.action_settings:
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
