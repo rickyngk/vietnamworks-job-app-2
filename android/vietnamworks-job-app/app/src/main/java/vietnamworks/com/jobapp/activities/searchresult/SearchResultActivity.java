@@ -2,6 +2,7 @@ package vietnamworks.com.jobapp.activities.searchresult;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,18 +62,32 @@ public class SearchResultActivity extends BaseActivity {
         recyclerJobSearch.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void loadData() {
-        ExploredJobModel.load(this, new Callback() {
-            @Override
-            public void onCompleted(Context context, CallbackResult result) {
-                if (context instanceof SearchResultActivity) {
-                    SearchResultActivity act = (SearchResultActivity) context;
-                    if (!act.isFinishing()) {
-                        recyclerJobSearch.setAdapter(new JobSearchAdapter(context));
+    private class LoadDataAsync extends AsyncTask<Void, Void, Void> {
+        protected Void doInBackground(Void...params) {
+            ExploredJobModel.load(SearchResultActivity.this, new Callback() {
+                @Override
+                public void onCompleted(Context context, CallbackResult result) {
+                    if (context instanceof SearchResultActivity) {
+                        SearchResultActivity act = (SearchResultActivity) context;
+                        if (!act.isFinishing()) {
+                            recyclerJobSearch.setAdapter(new JobSearchAdapter(context));
+                        }
                     }
                 }
-            }
-        });
+            });
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+        }
+
+        protected void onPostExecute(Long result) {
+        }
+    }
+
+
+    private void loadData() {
+        new LoadDataAsync().execute();
     }
 
     public static class JobSearchAdapter extends RecyclerView.Adapter<JobSearchAdapter.ViewHolder> {

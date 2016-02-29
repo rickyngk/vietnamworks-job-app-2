@@ -97,14 +97,27 @@ public class SearchFragment extends BaseFragment {
             return position;
         }
 
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View view, ViewGroup parent) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.cv_search_history_item_list, null);
-                TextView tv = (TextView)convertView.findViewById(R.id.textView1);
+            if (view == null) {
+                view = layoutInflater.inflate(R.layout.cv_search_history_item_list, parent, false);
+                TextView tv = (TextView)view.findViewById(R.id.textView1);
                 tv.setText(SearchHistoryModel.get(position).getSummary());
             }
-            return convertView;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle b = new Bundle();
+                    String data = null;
+                    try {
+                        SearchHistoryEntity entity = (SearchHistoryEntity)getItem(position);
+                        data = entity.exportToJson().toString();
+                    } catch (Exception E) {}
+                    b.putString("data", data);
+                    BaseActivity.pushActivity(SearchResultActivity.class, b);
+                }
+            });
+            return view;
         }
 
     }
