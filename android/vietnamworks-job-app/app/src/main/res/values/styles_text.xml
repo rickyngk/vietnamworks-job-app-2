@@ -7,6 +7,7 @@
     <color name="textColorPrimary">@color/colorPrimary</color>
     <color name="textColorWarning">@color/colorWarning</color>
 
+    <dimen name="font_xxs">10sp</dimen>
     <dimen name="font_xs">12sp</dimen>
     <dimen name="font_s">14sp</dimen>
     <dimen name="font_m">17sp</dimen>
