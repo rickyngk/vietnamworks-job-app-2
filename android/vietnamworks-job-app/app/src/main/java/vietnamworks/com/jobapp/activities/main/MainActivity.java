@@ -30,10 +30,11 @@ import vietnamworks.com.jobapp.activities.main.fragments.UserJobsFragment;
 import vietnamworks.com.jobapp.activities.userjobs.JobsActivity;
 
 public class MainActivity extends BaseActivity {
-    public enum SECTIONS {
-        SEARCH,
-        EXPLORED,
-        APPLIED_JOBS
+
+    public interface SECTIONS {
+        final static int SEARCH = 0;
+        final static int EXPLORED = 1;
+        final static int APPLIED_JOBS = 2;
     }
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -68,7 +69,7 @@ public class MainActivity extends BaseActivity {
                     showTabs();
                     showActionBar();
                 }
-                if (position == SECTIONS.APPLIED_JOBS.ordinal()) {
+                if (position == SECTIONS.APPLIED_JOBS) {
                     ((UserJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
                 }
                 setTitle(getResources().getStringArray(R.array.array_section_title)[position]);
@@ -147,13 +148,13 @@ public class MainActivity extends BaseActivity {
         public Fragment getItem(int position) {
             Fragment f = null;
             switch (position) {
-                case 0:
+                case SECTIONS.SEARCH:
                     f = BaseFragment.newInstance(SearchFragment.class);
                     break;
-                case 1:
+                case SECTIONS.EXPLORED:
                     f = BaseFragment.newInstance(ExploreFragment.class);
                     break;
-                case 2:
+                case SECTIONS.APPLIED_JOBS:
                     f = BaseFragment.newInstance(UserJobsFragment.class);
                     break;
                 default:

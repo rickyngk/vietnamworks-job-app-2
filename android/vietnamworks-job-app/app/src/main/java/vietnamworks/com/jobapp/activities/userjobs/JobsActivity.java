@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,23 +17,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import R.helper.BaseActivity;
+import R.helper.BaseFragment;
 import vietnamworks.com.jobapp.R;
+import vietnamworks.com.jobapp.activities.main.fragments.UserJobsFragment;
 
 public class JobsActivity extends BaseActivity {
+    public interface SECTIONS {
+        final static int SAVED_JOBS = 0;
+        final static int RECENT_VIEWED_JOBS = 1;
+        final static int APPLIED_JOBS = 2;
+    }
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
 
     @Override
@@ -57,6 +53,28 @@ public class JobsActivity extends BaseActivity {
         if (b != null) {
             b.setDisplayHomeAsUpEnabled(true);
         }
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == SECTIONS.APPLIED_JOBS) {
+                    ((UserJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
+                }
+                setTitle(getResources().getStringArray(R.array.array_job_section_title)[position]);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        setTitle(getResources().getStringArray(R.array.array_job_section_title)[0]);
         setTitleBarColor(R.color.colorPrimaryDark);
 
     }
@@ -125,16 +143,29 @@ public class JobsActivity extends BaseActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
+        SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            Fragment f = null;
+            switch (position) {
+                case SECTIONS.RECENT_VIEWED_JOBS:
+                    f = PlaceholderFragment.newInstance(position + 1);
+                    break;
+                case SECTIONS.SAVED_JOBS:
+                    f = PlaceholderFragment.newInstance(position + 1);
+                    break;
+                case SECTIONS.APPLIED_JOBS:
+                    f = BaseFragment.newInstance(UserJobsFragment.class);
+                    break;
+                default:
+                    break;
+            }
+            registeredFragments.append(position, f);
+            return f;
         }
 
         @Override
@@ -145,6 +176,10 @@ public class JobsActivity extends BaseActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return getResources().getStringArray(R.array.array_job_section_title)[position];
+        }
+
+        public BaseFragment getFragment(int position) {
+            return (BaseFragment)registeredFragments.get(position);
         }
     }
 }

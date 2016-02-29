@@ -1,5 +1,6 @@
 package vietnamworks.com.jobapp.activities.main.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,7 +17,6 @@ import R.helper.CallbackResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.jobapp.R;
-import vietnamworks.com.jobapp.activities.main.MainActivity;
 import vietnamworks.com.jobapp.models.UserJobModel;
 import vietnamworks.com.vnwcore.entities.AppliedJob;
 import vietnamworks.com.vnwcore.entities.Configuration;
@@ -55,8 +55,8 @@ public class UserJobsFragment extends BaseFragment {
         UserJobModel.load(getContext(), new Callback() {
             @Override
             public void onCompleted(Context context, CallbackResult result) {
-                if (context instanceof MainActivity) {
-                    MainActivity act = (MainActivity) context;
+                if (context instanceof Activity) {
+                    Activity act = (Activity) context;
                     if (!act.isFinishing()) {
                         swipeLayout.setRefreshing(false);
                         recyclerView.setAdapter(new CustomRecyclerViewAdapter(context));
