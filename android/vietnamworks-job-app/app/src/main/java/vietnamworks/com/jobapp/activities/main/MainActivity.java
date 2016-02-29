@@ -25,8 +25,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import vietnamworks.com.jobapp.R;
 import vietnamworks.com.jobapp.activities.main.fragments.ExploreFragment;
+import vietnamworks.com.jobapp.activities.main.fragments.MainExtraFragment;
 import vietnamworks.com.jobapp.activities.main.fragments.SearchFragment;
-import vietnamworks.com.jobapp.activities.userjobs.fragments.AppliedJobsFragment;
 import vietnamworks.com.jobapp.activities.userjobs.JobsActivity;
 
 public class MainActivity extends BaseActivity {
@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
     public interface SECTIONS {
         final static int SEARCH = 0;
         final static int EXPLORED = 1;
-        final static int APPLIED_JOBS = 2;
+        final static int EXTRA = 2;
     }
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -69,12 +69,7 @@ public class MainActivity extends BaseActivity {
                     showTabs();
                     showActionBar();
                 }
-                if (position == SECTIONS.APPLIED_JOBS) {
-                    ((AppliedJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
-                }
                 setTitle(getResources().getStringArray(R.array.array_section_title)[position]);
-
-
             }
 
             @Override
@@ -136,7 +131,7 @@ public class MainActivity extends BaseActivity {
         private int[] imageResId = {
                 R.drawable.ic_tab_search,
                 R.drawable.ic_tab_explore,
-                R.drawable.ic_action_working_briefcase
+                R.drawable.ic_action_image_dehaze
         };
         public SectionsPagerAdapter(Context ctx, FragmentManager fm) {
             super(fm);
@@ -154,8 +149,8 @@ public class MainActivity extends BaseActivity {
                 case SECTIONS.EXPLORED:
                     f = BaseFragment.newInstance(ExploreFragment.class);
                     break;
-                case SECTIONS.APPLIED_JOBS:
-                    f = BaseFragment.newInstance(AppliedJobsFragment.class);
+                case SECTIONS.EXTRA:
+                    f = BaseFragment.newInstance(MainExtraFragment.class);
                     break;
                 default:
                     break;
@@ -171,9 +166,17 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
+            /*
             Drawable image = ContextCompat.getDrawable(ctx, imageResId[position]);
             image.setBounds(0, 0, image.getIntrinsicWidth()*4/5, image.getIntrinsicHeight()*4/5);
             SpannableString sb = new SpannableString(" \n" + sections[position]);
+            ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BASELINE);
+            sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            return sb;
+            */
+            Drawable image = ContextCompat.getDrawable(ctx, imageResId[position]);
+            image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
+            SpannableString sb = new SpannableString(" ");
             ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BASELINE);
             sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             return sb;

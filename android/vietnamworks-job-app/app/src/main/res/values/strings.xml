@@ -6,7 +6,7 @@
     <string-array name="array_section_title">
         <item>Search jobs</item>
         <item>Explore jobs</item>
-        <item>Your jobs</item>
+        <item></item>
     </string-array>
 
     <string-array name="array_job_section_title">
@@ -24,4 +24,15 @@
     <string name="title_activity_jobs">JobsActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+    <!-- extra fragment-->
+    <string name="view_your_profile">View your profile</string>
+    <string name="your_jobs">Your jobs</string>
+    <string name="recent_viewed_jobs">Recent viewed jobs</string>
+    <string name="applied_jobs">Applied jobs</string>
+    <string name="saved_jobs">Saved jobs</string>
+    <string name="alerted_job">Alerted jobs</string>
+
+    <string name="manage">Manage</string>
+    <string name="manage_history">Manage search history</string>
+    <string name="manage_job_alert">Manage job alert</string>
 </resources>

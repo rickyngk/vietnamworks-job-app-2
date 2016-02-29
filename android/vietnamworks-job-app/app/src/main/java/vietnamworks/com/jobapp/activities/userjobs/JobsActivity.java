@@ -66,7 +66,6 @@ public class JobsActivity extends BaseActivity {
                 if (position == SECTIONS.APPLIED_JOBS) {
                     ((AppliedJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
                 }
-                setTitle(getResources().getStringArray(R.array.array_job_section_title)[position]);
             }
 
             @Override
@@ -75,7 +74,7 @@ public class JobsActivity extends BaseActivity {
             }
         });
 
-        setTitle(getResources().getStringArray(R.array.array_job_section_title)[0]);
+        setTitle(getResources().getString(R.string.your_jobs));
         setTitleBarColor(R.color.colorPrimaryDark);
 
     }
