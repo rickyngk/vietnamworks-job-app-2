@@ -29,6 +29,12 @@ import vietnamworks.com.jobapp.activities.main.fragments.SearchFragment;
 import vietnamworks.com.jobapp.activities.main.fragments.UserJobsFragment;
 
 public class MainActivity extends BaseActivity {
+    public enum SECTIONS {
+        SEARCH,
+        EXPLORED,
+        APPLIED_JOBS
+    }
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     @Bind(R.id.tabs) TabLayout tabLayout;
@@ -61,7 +67,12 @@ public class MainActivity extends BaseActivity {
                     showTabs();
                     showActionBar();
                 }
+                if (position == SECTIONS.APPLIED_JOBS.ordinal()) {
+                    ((UserJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
+                }
                 setTitle(getResources().getStringArray(R.array.array_section_title)[position]);
+
+
             }
 
             @Override

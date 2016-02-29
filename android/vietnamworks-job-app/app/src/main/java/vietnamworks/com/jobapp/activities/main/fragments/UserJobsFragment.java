@@ -40,9 +40,6 @@ public class UserJobsFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
         ButterKnife.bind(this, rootView);
 
-        loadData();
-
-        swipeLayout.setRefreshing(true);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -53,7 +50,8 @@ public class UserJobsFragment extends BaseFragment {
         return rootView;
     }
 
-    private void loadData() {
+    public void loadData() {
+        swipeLayout.setRefreshing(true);
         UserJobModel.load(getContext(), new Callback() {
             @Override
             public void onCompleted(Context context, CallbackResult result) {
