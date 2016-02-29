@@ -19,13 +19,14 @@ import android.widget.TextView;
 import R.helper.BaseActivity;
 import R.helper.BaseFragment;
 import vietnamworks.com.jobapp.R;
-import vietnamworks.com.jobapp.activities.main.fragments.UserJobsFragment;
+import vietnamworks.com.jobapp.activities.userjobs.fragments.AppliedJobsFragment;
 
 public class JobsActivity extends BaseActivity {
     public interface SECTIONS {
-        final static int SAVED_JOBS = 0;
-        final static int RECENT_VIEWED_JOBS = 1;
-        final static int APPLIED_JOBS = 2;
+        final static int RECENT_VIEWED_JOBS = 0;
+        final static int ALERT_JOBS = 1;
+        final static int SAVED_JOBS = 2;
+        final static int APPLIED_JOBS = 3;
     }
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -63,7 +64,7 @@ public class JobsActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 if (position == SECTIONS.APPLIED_JOBS) {
-                    ((UserJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
+                    ((AppliedJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
                 }
                 setTitle(getResources().getStringArray(R.array.array_job_section_title)[position]);
             }
@@ -155,11 +156,14 @@ public class JobsActivity extends BaseActivity {
                 case SECTIONS.RECENT_VIEWED_JOBS:
                     f = PlaceholderFragment.newInstance(position + 1);
                     break;
+                case SECTIONS.ALERT_JOBS:
+                    f = PlaceholderFragment.newInstance(position + 1);
+                    break;
                 case SECTIONS.SAVED_JOBS:
                     f = PlaceholderFragment.newInstance(position + 1);
                     break;
                 case SECTIONS.APPLIED_JOBS:
-                    f = BaseFragment.newInstance(UserJobsFragment.class);
+                    f = BaseFragment.newInstance(AppliedJobsFragment.class);
                     break;
                 default:
                     break;

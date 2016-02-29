@@ -1,4 +1,4 @@
-package vietnamworks.com.jobapp.activities.main.fragments;
+package vietnamworks.com.jobapp.activities.userjobs.fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,7 +26,7 @@ import vietnamworks.com.vnwcore.entities.Location;
  * Created by duynk on 2/22/16.
  *
  */
-public class UserJobsFragment extends BaseFragment {
+public class AppliedJobsFragment extends BaseFragment {
 
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;

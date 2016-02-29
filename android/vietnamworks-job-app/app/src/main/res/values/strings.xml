@@ -10,9 +10,10 @@
     </string-array>
 
     <string-array name="array_job_section_title">
-        <item>Saved jobs</item>
-        <item>Last view</item>
-        <item>Applied jobs</item>
+        <item>Recent</item>
+        <item>Alerted</item>
+        <item>Saved</item>
+        <item>Applied</item>
     </string-array>
 
 

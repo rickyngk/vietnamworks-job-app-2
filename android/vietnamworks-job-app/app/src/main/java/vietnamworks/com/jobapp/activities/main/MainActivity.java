@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 import vietnamworks.com.jobapp.R;
 import vietnamworks.com.jobapp.activities.main.fragments.ExploreFragment;
 import vietnamworks.com.jobapp.activities.main.fragments.SearchFragment;
-import vietnamworks.com.jobapp.activities.main.fragments.UserJobsFragment;
+import vietnamworks.com.jobapp.activities.userjobs.fragments.AppliedJobsFragment;
 import vietnamworks.com.jobapp.activities.userjobs.JobsActivity;
 
 public class MainActivity extends BaseActivity {
@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity {
                     showActionBar();
                 }
                 if (position == SECTIONS.APPLIED_JOBS) {
-                    ((UserJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
+                    ((AppliedJobsFragment) mSectionsPagerAdapter.getFragment(position)).loadData();
                 }
                 setTitle(getResources().getStringArray(R.array.array_section_title)[position]);
 
@@ -155,7 +155,7 @@ public class MainActivity extends BaseActivity {
                     f = BaseFragment.newInstance(ExploreFragment.class);
                     break;
                 case SECTIONS.APPLIED_JOBS:
-                    f = BaseFragment.newInstance(UserJobsFragment.class);
+                    f = BaseFragment.newInstance(AppliedJobsFragment.class);
                     break;
                 default:
                     break;
